@@ -5,13 +5,20 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [imageUrl, setImageUrl] = useState('');
+  const [breedName, setBreedName] = useState('');
 
   // Função para buscar a imagem de cachorro da API
   const fetchDogImage = async () => {
     try {
       const response = await fetch('https://dog.ceo/api/breeds/image/random');
       const data = await response.json();
-      setImageUrl(data.message);
+      const imageUrl = data.message;
+      
+      setImageUrl(imageUrl);
+
+      // Extrair o nome da raça da URL
+      const breed = imageUrl.split('/')[4]; // Pega o quarto elemento da URL, que é o nome da raça
+      setBreedName(breed);
     } catch (error) {
       console.error('Erro ao buscar a imagem de cachorro:', error);
     }
@@ -28,6 +35,9 @@ export default function Home() {
     >
       <div /> {/* Espaço vazio para manter o conteúdo no rodapé */}
       <div className="flex flex-col items-center py-8">
+        <p className="text-white text-lg mb-2 px-4 py-1 rounded bg-blue-500/50">
+          Raça: {breedName}
+        </p>
         <h1 className="text-white text-4xl font-bold mb-4 text-center px-8">
           Cachorros são os melhores amigos!
         </h1>
