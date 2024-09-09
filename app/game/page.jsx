@@ -2,34 +2,16 @@
 
 // pages/game.js
 import { useEffect, useState } from 'react';
+import { fetchDogImage } from '../api/fetchDogImage'; // Caminho relativo correto para importar a função
 
 export default function Game() {
   const [imageUrl, setImageUrl] = useState('');
   const [breedName, setBreedName] = useState('');
-  const [showBreed, setShowBreed] = useState(false); // Novo estado para controlar a visibilidade do nome da raça
-
-  // Função para buscar a imagem de cachorro da API
-  const fetchDogImage = async () => {
-    try {
-      const response = await fetch('https://dog.ceo/api/breeds/image/random');
-      const data = await response.json();
-      const imageUrl = data.message;
-      
-      setImageUrl(imageUrl);
-
-      // Extrair o nome da raça da URL
-      const breed = imageUrl.split('/')[4];
-      setBreedName(breed);
-
-      // Esconder o nome da raça quando uma nova imagem for buscada
-      setShowBreed(false);
-    } catch (error) {
-      console.error('Erro ao buscar a imagem de cachorro:', error);
-    }
-  };
+  const [showBreed, setShowBreed] = useState(false); // Estado para controlar a visibilidade do nome da raça
 
   useEffect(() => {
-    fetchDogImage(); // Busca a imagem inicial quando o componente é montado
+    // Chama a função de buscar imagem da API
+    fetchDogImage(setImageUrl, setBreedName, () => setShowBreed(false)); // Esconder o nome da raça quando uma nova imagem for buscada
   }, []);
 
   return (
@@ -50,7 +32,7 @@ export default function Game() {
           Cachorros são os melhores amigos!
         </h1>
         <button
-          onClick={fetchDogImage}
+          onClick={() => fetchDogImage(setImageUrl, setBreedName, () => setShowBreed(false))}
           className="px-4 py-2 bg-white text-black font-semibold rounded hover:bg-gray-300"
         >
           Trocar Imagem
