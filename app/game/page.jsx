@@ -20,22 +20,25 @@ export default function Game() {
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
       <div /> {/* Espaço vazio para manter o conteúdo no rodapé */}
-      <div className="flex flex-col items-center py-8">
+      <div className="flex flex-col items-center py-8 bg-sky-800/70 m-8 rounded-3xl ">
         {/* Etiqueta para descobrir a raça */}
         <div
           onClick={() => setShowBreed(true)} // Mostra o nome da raça quando clicado
-          className="text-white text-lg mb-2 px-4 py-1 rounded bg-blue-500/50 cursor-pointer"
+          className="text-white text-lg mb-2 px-4 py-1 rounded bg-sky-500/50 font-black cursor-pointer"
         >
-          {showBreed ? `Raça: ${breedName}` : 'Toque para descobrir a raça'}
+          {showBreed ? `${breedName}` : 'Touch to reveal the breed!'}
+        </div>
+        <div>
+          
         </div>
         <h1 className="text-white text-4xl font-bold mb-4 text-center px-8">
-          Cachorros são os melhores amigos!
+          Can you guess the breed? 🐶
         </h1>
         <button
           onClick={() => fetchDogImage(setImageUrl, setBreedName, () => setShowBreed(false))}
-          className="px-4 py-2 bg-white text-black font-semibold rounded hover:bg-gray-300"
+          className="px-4 py-2 bg-sky-500 text-white font-semibold rounded hover:bg-slate-500"
         >
-          Trocar Imagem
+          Next
         </button>
       </div>
     </div>
