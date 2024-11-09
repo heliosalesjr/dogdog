@@ -27,7 +27,7 @@ export default function Home() {
             src={imageUrl}
             alt="Random image"
             fill
-            className="object-contain"
+            className="object-contain pt-8"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         )}

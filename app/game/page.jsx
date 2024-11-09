@@ -5,6 +5,9 @@ import { fetchDogImage } from '../api/fetchDogImage';
 import { motion } from 'framer-motion';
 import Confetti from 'react-confetti';
 
+import Image from 'next/image';
+
+
 export default function Game() {
   const [imageUrl, setImageUrl] = useState('');
   const [breedName, setBreedName] = useState('');
@@ -39,13 +42,24 @@ export default function Game() {
     setTimeout(() => setShowConfetti(false), 3000);
   };
 
+  
+
   return (
-    <div
-      className="h-screen w-full flex flex-col justify-between bg-cover bg-center"
-      style={{ backgroundImage: `url(${imageUrl})` }}
-    >
-      <div />
+    <div className="h-screen w-full flex flex-col justify-between items-center bg-black">
+      <div className="relative w-full h-full max-w-4xl">
+        {imageUrl && (
+          <Image
+            src={imageUrl}
+            alt="Random image"
+            fill
+            className="object-contain pt-8"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        )}
+      </div>    
       <div className="flex flex-col items-center py-8 bg-sky-800/70 m-8 rounded-3xl max-w-xl mx-auto">
+
+
         {showConfetti && <Confetti width={windowSize.width} height={windowSize.height} />}
         
         <motion.div
