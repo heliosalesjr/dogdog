@@ -9,7 +9,7 @@ export default function DogImage({ imageUrl }) {
           src={imageUrl}
           alt="Random image"
           fill
-          className="object-contain pt-8"
+          className="object-contain pt-8 rounded"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       )}
