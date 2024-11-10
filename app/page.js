@@ -62,7 +62,7 @@ export default function GameContainer() {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col justify-between items-center bg-black">
+    <div className="h-screen w-full flex flex-col justify-between items-center bg-stripes">
       <DogImage imageUrl={imageUrl} />
       <div className="flex flex-col items-center py-8 bg-sky-800/70 m-8 rounded-3xl max-w-xl mx-auto">
         {showConfetti && <ConfettiEffect windowSize={windowSize} />}

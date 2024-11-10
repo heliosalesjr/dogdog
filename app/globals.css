@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-stripes {
+    background-image: linear-gradient(135deg, #1e3a8a 25%, #38bdf8 25%, #38bdf8 50%, #1e3a8a 50%, #1e3a8a 75%, #38bdf8 75%, #38bdf8 100%);
+    background-size: 40px 40px; /* Ajuste o tamanho das listras */
+  }
