@@ -13,29 +13,27 @@ export default function GameContainer() {
   const [breedOptions, setBreedOptions] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
+  const [showAlert, setShowAlert] = useState(false); // Novo estado para o alerta
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    // Função para obter as dimensões da janela
     const getWindowDimensions = () => ({
       width: window.innerWidth,
       height: window.innerHeight,
     });
 
-    // Função para tratar o resize da janela
     const handleResize = () => setWindowSize(getWindowDimensions());
 
-    // Inicializa as dimensões da janela e define o listener para o resize
     setWindowSize(getWindowDimensions());
     window.addEventListener('resize', handleResize);
 
-    // Limpa o listener ao desmontar o componente
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const startNewRound = async () => {
     setShowNextButton(false);
     setShowConfetti(false);
+    setShowAlert(false); // Reseta o alerta ao iniciar uma nova rodada
 
     try {
       const result = await fetchDogImage();
@@ -58,6 +56,8 @@ export default function GameContainer() {
     if (selectedBreed === correctBreed) {
       setShowConfetti(true);
       setShowNextButton(true);
+    } else {
+      setShowAlert(true); // Exibe o alerta se a resposta estiver incorreta
     }
   };
 
@@ -66,9 +66,24 @@ export default function GameContainer() {
       <DogImage imageUrl={imageUrl} />
       <div className="flex flex-col items-center py-8 bg-sky-800/70 m-8 rounded-3xl max-w-xl mx-auto">
         {showConfetti && <ConfettiEffect windowSize={windowSize} />}
+        
         <h1 className="text-white text-4xl font-bold mb-4 text-center px-8">Can you guess the breed? 🐶</h1>
+        
         <BreedOptions options={breedOptions} onClick={handleBreedClick} />
+        
         {showNextButton && <NextButton onClick={startNewRound} />}
+
+        {showAlert && (
+          <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
+            <p>The name of the breed is {correctBreed}.</p>
+            <button
+              onClick={startNewRound}
+              className="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
