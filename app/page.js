@@ -6,6 +6,7 @@ import DogImage from './components/DogImage';
 import BreedOptions from './components/BreedOptions';
 import ConfettiEffect from './components/ConfettiEffect';
 import NextButton from './components/NextButton';
+import Score from './components/Score'; // Importa o componente Score
 
 export default function GameContainer() {
   const [imageUrl, setImageUrl] = useState('');
@@ -13,7 +14,8 @@ export default function GameContainer() {
   const [breedOptions, setBreedOptions] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
-  const [showAlert, setShowAlert] = useState(false); // Novo estado para o alerta
+  const [showAlert, setShowAlert] = useState(false);
+  const [points, setPoints] = useState(0); // Novo estado para a pontuação
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function GameContainer() {
   const startNewRound = async () => {
     setShowNextButton(false);
     setShowConfetti(false);
-    setShowAlert(false); // Reseta o alerta ao iniciar uma nova rodada
+    setShowAlert(false);
 
     try {
       const result = await fetchDogImage();
@@ -56,13 +58,17 @@ export default function GameContainer() {
     if (selectedBreed === correctBreed) {
       setShowConfetti(true);
       setShowNextButton(true);
+      setPoints((prevPoints) => prevPoints + 1); // Atualiza a pontuação ao acertar
     } else {
-      setShowAlert(true); // Exibe o alerta se a resposta estiver incorreta
+      setShowAlert(true);
     }
   };
 
   return (
-    <div className="h-screen w-full flex flex-col justify-between items-center bg-stripes">
+    <div className="h-screen w-full flex flex-col justify-between items-center bg-stripes relative">
+      {/* Exibe o componente Score com a pontuação atual */}
+      <Score points={points} />
+      
       <DogImage imageUrl={imageUrl} />
       <div className="flex flex-col items-center py-8 bg-sky-800/70 m-8 rounded-3xl max-w-xl mx-auto">
         {showConfetti && <ConfettiEffect windowSize={windowSize} />}
