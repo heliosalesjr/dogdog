@@ -1,14 +1,14 @@
-// HeroSection.jsx
 import React from 'react';
+import { FaDog } from 'react-icons/fa';
 
 export default function HeroSection() {
   return (
-    <section className="flex flex-col items-center justify-center text-center bg-gradient-to-br from-[#ADD8E6] via-[#FFB6C1] to-[#FFA500] h-screen p-8">
-      <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">
+    <section className="flex flex-col items-center justify-center text-center bg-stone-200 h-screen p-8 font-space">
+      <h1 className="text-5xl md:text-7xl font-black text-slate-800 drop-shadow-lg">
         Guess The Woof!
       </h1>
-      <p className="mt-6 text-xl md:text-2xl text-white max-w-xl mx-auto">
-        Test your skills and see if you can recognize dog breeds by their looks!
+      <p className="mt-6 text-xl md:text-2xl text-slate-800 max-w-xl mx-auto">
+        Test your skills and see if you can recognize dog breeds by their looks!  
         A fun and interactive game for all dog lovers.
       </p>
       <div className="flex gap-4 mt-10">
@@ -18,6 +18,53 @@ export default function HeroSection() {
         <button className="px-8 py-3 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition duration-200">
           Play
         </button>
+      </div>
+
+      {/* Nova Div com os Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 w-full max-w-4xl">
+        {/* Card 1 */}
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-400 text-white">
+            <FaDog size={32} />
+          </div>
+          <div className="ml-4">
+            <h3 className="text-lg font-bold text-slate-800">Explore Breeds</h3>
+            <p className="text-sm text-slate-600">Discover unique dog breeds as you play.</p>
+          </div>
+        </div>
+
+        {/* Card 2 */}
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-orange-400 text-white">
+            <FaDog size={32} />
+          </div>
+          <div className="ml-4">
+            <h3 className="text-lg font-bold text-slate-800">Challenge Yourself</h3>
+            <p className="text-sm text-slate-600">Can you identify every dog breed?</p>
+          </div>
+        </div>
+
+        {/* Card 3 */}
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-400 text-white">
+            <FaDog size={32} />
+          </div>
+          <div className="ml-4">
+            <h3 className="text-lg font-bold text-slate-800">Play Anywhere</h3>
+            <p className="text-sm text-slate-600">Designed to work across all devices!</p>
+          </div>
+        </div>
+
+        {/* Card 4 */}
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-yellow-400 text-white">
+            <FaDog size={32} />
+          </div>
+          <div className="ml-4">
+            <h3 className="text-lg font-bold text-slate-800">Fun for All</h3>
+            <p className="text-sm text-slate-600">Everyone, young or old, can enjoy this game!</p>
+          </div>
+        </div>
       </div>
     </section>
   );
