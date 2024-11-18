@@ -1,5 +1,8 @@
 import React from 'react';
 import { FaDog } from 'react-icons/fa';
+import { TbDogBowl } from "react-icons/tb";
+import { PiDogFill } from "react-icons/pi";
+import { GiJumpingDog } from "react-icons/gi";
 
 export default function HeroSection() {
   return (
@@ -12,29 +15,29 @@ export default function HeroSection() {
         A fun and interactive game for all dog lovers.
       </p>
     
-      <div className="flex gap-4 mt-10">
-  <div className="relative">
-    <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
-    <button className="relative px-8 py-3 bg-orange-500 text-white font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
-      Play
-    </button>
+  <div className="flex gap-4 mt-10">
+    <div className="relative">
+      <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
+        <button className="relative px-8 py-3 bg-sky-500 text-white font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
+          Play
+        </button>
+      </div>
+      <div className="relative">
+        <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
+          <button className="relative px-8 py-3 bg-white text-pink-600 font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
+            Learn more
+          </button>
+        </div>
   </div>
-  <div className="relative">
-    <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
-    <button className="relative px-8 py-3 bg-white text-pink-600 font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
-      Learn more
-    </button>
-  </div>
-</div>
 
 
 
 
-      {/* Nova Div com os Cards */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 w-full max-w-4xl">
         {/* Card 1 */}
         <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-400 text-white">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-500 text-white">
             <FaDog size={32} />
           </div>
           <div className="ml-4">
@@ -46,7 +49,7 @@ export default function HeroSection() {
         {/* Card 2 */}
         <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
           <div className="w-16 h-16 flex items-center justify-center rounded-full bg-orange-400 text-white">
-            <FaDog size={32} />
+            <TbDogBowl size={32} />
           </div>
           <div className="ml-4">
             <h3 className="text-lg font-bold text-slate-800">Challenge Yourself</h3>
@@ -56,8 +59,8 @@ export default function HeroSection() {
 
         {/* Card 3 */}
         <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-400 text-white">
-            <FaDog size={32} />
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-sky-500 text-white">
+            <PiDogFill size={32} />
           </div>
           <div className="ml-4">
             <h3 className="text-lg font-bold text-slate-800">Play Anywhere</h3>
@@ -68,7 +71,7 @@ export default function HeroSection() {
         {/* Card 4 */}
         <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
           <div className="w-16 h-16 flex items-center justify-center rounded-full bg-yellow-400 text-white">
-            <FaDog size={32} />
+            <GiJumpingDog size={32} />
           </div>
           <div className="ml-4">
             <h3 className="text-lg font-bold text-slate-800">Fun for All</h3>
