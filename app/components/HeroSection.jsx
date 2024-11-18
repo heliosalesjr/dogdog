@@ -11,14 +11,24 @@ export default function HeroSection() {
         Test your skills and see if you can recognize dog breeds by their looks!  
         A fun and interactive game for all dog lovers.
       </p>
+    
       <div className="flex gap-4 mt-10">
-        <button className="px-8 py-3 bg-white text-pink-600 font-semibold rounded-lg shadow-md hover:bg-pink-100 transition duration-200">
-          Learn more
-        </button>
-        <button className="px-8 py-3 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition duration-200">
-          Play
-        </button>
-      </div>
+  <div className="relative">
+    <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
+    <button className="relative px-8 py-3 bg-orange-500 text-white font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
+      Play
+    </button>
+  </div>
+  <div className="relative">
+    <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
+    <button className="relative px-8 py-3 bg-white text-pink-600 font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
+      Learn more
+    </button>
+  </div>
+</div>
+
+
+
 
       {/* Nova Div com os Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 w-full max-w-4xl">

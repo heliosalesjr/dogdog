@@ -6,8 +6,11 @@
 /* Classe personalizada */
 .font-space {
   font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  
 }
 .bg-stripes {
     background-image: linear-gradient(135deg, #FFF 25%, #f83838 25%, #f83838 50%, #FFF 50%, #FFF 75%, #f83838 75%, #f83838 100%);
     background-size: 400px 400px; /* Ajuste o tamanho das listras */
   }
+
