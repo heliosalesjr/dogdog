@@ -36,7 +36,7 @@ export default function HeroSection() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 w-full max-w-4xl">
         {/* Card 1 */}
-        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-stone-100 shadow-lg hover:shadow-xl transition duration-200 text-left">
           <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-500 text-white">
             <FaDog size={32} />
           </div>
@@ -47,8 +47,8 @@ export default function HeroSection() {
         </div>
 
         {/* Card 2 */}
-        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-orange-400 text-white">
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-stone-100 shadow-lg hover:shadow-xl transition duration-200 text-left">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-green-500 text-white">
             <TbDogBowl size={32} />
           </div>
           <div className="ml-4">
@@ -58,8 +58,8 @@ export default function HeroSection() {
         </div>
 
         {/* Card 3 */}
-        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-sky-500 text-white">
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-stone-100 shadow-lg hover:shadow-xl transition duration-200 text-left">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-yellow-400 text-white">
             <PiDogFill size={32} />
           </div>
           <div className="ml-4">
@@ -69,8 +69,8 @@ export default function HeroSection() {
         </div>
 
         {/* Card 4 */}
-        <div className="flex items-center border-2 border-black rounded-full p-4 bg-white shadow-lg hover:shadow-xl transition duration-200 text-left">
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-yellow-400 text-white">
+        <div className="flex items-center border-2 border-black rounded-full p-4 bg-stone-100 shadow-lg hover:shadow-xl transition duration-200 text-left">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-sky-500 text-white">
             <GiJumpingDog size={32} />
           </div>
           <div className="ml-4">
