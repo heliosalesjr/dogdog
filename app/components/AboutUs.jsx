@@ -1,26 +1,55 @@
-// AboutUs.jsx
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
 export default function AboutUs() {
-    return (
-      <section className="bg-gradient-to-br from-[#FFB6C1] to-[#ADD8E6] py-16 text-center">
-        <div className="container mx-auto max-w-4xl px-6">
+  return (
+    <section className="bg-gradient-to-br from-[#FFB6C1] to-[#ADD8E6] py-16">
+      <div className="container mx-auto max-w-6xl px-6 flex flex-col lg:flex-row items-center">
+        {/* Texto */}
+        <div className="lg:w-1/2 text-center lg:text-left">
           <h2 className="text-4xl font-bold text-white mb-6 drop-shadow-lg">About Me</h2>
-          
-          <p className="text-lg text-white max-w-3xl mx-auto mb-6 leading-relaxed">
-            Hi! I’m a passionate developer with a love for dogs and a drive to create games that are both fun and accessible.
-            <span className="font-semibold"> Guess The Woof</span> started as a playful experiment with a dog breed recognition API,
-            but quickly grew into a game designed to bring joy to people of all ages.
+
+          <p className="text-lg text-white mb-4 leading-relaxed">
+            Hey there! I’m a developer who loves dogs and creating unique, accessible experiences for everyone. 
+            <span className="font-semibold"> Guess The Woof</span> started as a small experiment with a dog breed API 
+            and grew into something fun for all ages.
           </p>
-  
-          <p className="text-lg text-white max-w-3xl mx-auto mb-6 leading-relaxed">
-            My goal was to make a game simple enough for my grandparents to enjoy but engaging enough for everyone to have a
-            great time. Whether you’re a dog lover or a casual gamer, I hope Guess The Woof brings a smile to your face!
+
+          <p className="text-lg text-white mb-4 leading-relaxed">
+            My goal? Build something so simple that even my grandparents could enjoy it—while still being engaging for everyone. 
+            Whether you're a dog lover or just curious, I hope this game brings some joy to your day!
           </p>
-          
-          <button className="px-8 py-3 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition duration-200 mt-8">
-            Learn More
-          </button>
+
+          <div className="mt-8 flex gap-4 justify-center lg:justify-start">
+            <a
+              href="https://github.com/your-repo-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 flex items-center gap-2 bg-black text-white text-lg font-semibold border-4 border-black rounded-lg hover:bg-gray-800 transition-transform active:translate-x-1 active:translate-y-1 shadow-black shadow-solid"
+            >
+              <FaGithub size={20} />
+              Repository
+            </a>
+            <a
+              href="https://linkedin.com/in/your-profile-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 flex items-center gap-2 bg-black text-white text-lg font-semibold border-4 border-black rounded-lg hover:bg-gray-800 transition-transform active:translate-x-1 active:translate-y-1 shadow-black shadow-solid"
+            >
+              <FaLinkedin size={20} />
+              Get in Touch
+            </a>
+          </div>
         </div>
-      </section>
-    );
-  }
-  
+
+        {/* Imagem */}
+        <div className="lg:w-1/2 mt-10 lg:mt-0 lg:ml-8">
+          <img
+            src="/path-to-your-image.jpg"
+            alt="A playful dog illustration or relevant image"
+            className="w-full rounded-3xl border-4 border-black shadow-black shadow-solid"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

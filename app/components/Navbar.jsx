@@ -6,8 +6,8 @@ export default function Navbar() {
           <h1 className="text-2xl font-bold text-pink-300">Guess<span className="text-white font-medium">The</span>Woof</h1>
           <ul className="flex space-x-4">
             <li className="text-white hover:text-orange-200 cursor-pointer">Home</li>
+            <li className="text-white hover:text-orange-200 cursor-pointer">Play</li>
             <li className="text-white hover:text-orange-200 cursor-pointer">About</li>
-            <li className="text-white hover:text-orange-200 cursor-pointer">Play!</li>
             <li className="text-white hover:text-orange-200 cursor-pointer">Contact</li>
           </ul>
         </div>
