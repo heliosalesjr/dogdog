@@ -69,7 +69,9 @@ export default function Game() {
         <div className="h-screen w-full flex flex-col justify-between items-center relative">
         <Score points={points} />
         
-        <DogImage imageUrl={imageUrl} />
+        <div className="flex flex-1 flex-col justify-center items-center">
+          <DogImage imageUrl={imageUrl} />
+        </div>
         <div className="flex flex-col items-center py-8 bg-sky-800/70 m-8 rounded-3xl max-w-xl mx-auto">
             {showConfetti && <ConfettiEffect windowSize={windowSize} />}
             
