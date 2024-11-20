@@ -19,18 +19,23 @@ export default function HeroSection() {
   <div className="flex gap-4 mt-10">
     <div className="relative">
       <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
-        <button href="game" className="relative px-8 py-3 bg-sky-500 text-white font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
+        <button onClick={() => {
+      document.getElementById("game").scrollIntoView({ behavior: "smooth" });
+    }}className="relative px-8 py-3 bg-sky-500 text-white font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
           Play
         </button>
       </div>
       <div className="relative">
-        <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
-          <button
-           
-            className="relative px-8 py-3 bg-white text-pink-600 font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2">
-            Learn more
-          </button>
-        </div>
+  <div className="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
+  <button
+    onClick={() => {
+      document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+    }}
+    className="relative px-8 py-3 bg-white text-pink-600 font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2"
+  >
+    Learn more
+  </button>
+</div>
   </div>
 
 
