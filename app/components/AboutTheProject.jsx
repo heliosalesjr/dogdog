@@ -3,7 +3,7 @@ import { FaPaw, FaBook, FaHeart } from 'react-icons/fa';
 
 export default function FeatureSection() {
   return (
-    <section className="flex flex-col items-center text-center bg-stone-100 py-16 px-8 font-space">
+    <section id="about" className="flex flex-col items-center text-center bg-stone-100 py-16 px-8 font-space">
       {/* Título e Subtítulo */}
       <h2 className="text-4xl md:text-5xl font-black text-slate-800 mb-4">
         Discover More About Guess The Woof
