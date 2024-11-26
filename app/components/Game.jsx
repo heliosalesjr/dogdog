@@ -101,13 +101,10 @@ export default function Game() {
             <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
                 <p>The name of the breed is {correctBreed}.</p>
                 <button
-                  onClick={() => onClick(option)}
-                  disabled={disabled} // Desativa funcionalmente
-                  className={`px-4 py-2 font-bold rounded 
-                    ${disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'}
-                  `}
+                onClick={startNewRound}
+                className="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
                 >
-                  {option}
+                Next
                 </button>
             </div>
             )}
