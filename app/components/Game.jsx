@@ -17,6 +17,8 @@ export default function Game() {
   const [showAlert, setShowAlert] = useState(false);
   const [points, setPoints] = useState(0);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isRoundActive, setIsRoundActive] = useState(true);
+
 
   useEffect(() => {
     const getWindowDimensions = () => ({
@@ -36,10 +38,11 @@ export default function Game() {
     setShowNextButton(false);
     setShowConfetti(false);
     setShowAlert(false);
-
+    setIsRoundActive(true); // Reativa os botões
+  
     try {
       const result = await fetchDogImage();
-
+  
       if (result) {
         setImageUrl(result.imageUrl);
         setCorrectBreed(result.breed);
@@ -55,14 +58,18 @@ export default function Game() {
   }, []);
 
   const handleBreedClick = (selectedBreed) => {
+    if (!isRoundActive) return; // Impede cliques extras
+  
+    setIsRoundActive(false); // Desativa os botões após o clique
+  
     if (selectedBreed === correctBreed) {
       setShowConfetti(true);
       setShowNextButton(true);
       setPoints((prevPoints) => prevPoints + 1);
   
-      // Desativa o confetti após 3 segundos
+      // Mostra o confetti por 3 segundos antes de desativar
       setTimeout(() => {
-        setShowConfetti(false); // Isso aciona o fade out
+        setShowConfetti(false);
       }, 3000);
     } else {
       setShowAlert(true);
@@ -82,7 +89,11 @@ export default function Game() {
             
             <h1 className="text-white text-4xl font-bold mb-4 text-center px-8">Can you guess the breed? 🐶</h1>
             
-            <BreedOptions options={breedOptions} onClick={handleBreedClick} />
+            <BreedOptions
+              options={breedOptions}
+              onClick={handleBreedClick}
+              disabled={!isRoundActive} // Passa a flag para os botões
+            />
             
             {showNextButton && <NextButton onClick={startNewRound} />}
 
@@ -90,10 +101,13 @@ export default function Game() {
             <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
                 <p>The name of the breed is {correctBreed}.</p>
                 <button
-                onClick={startNewRound}
-                className="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
+                  onClick={() => onClick(option)}
+                  disabled={disabled} // Desativa funcionalmente
+                  className={`px-4 py-2 font-bold rounded 
+                    ${disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'}
+                  `}
                 >
-                Next
+                  {option}
                 </button>
             </div>
             )}
