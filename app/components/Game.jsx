@@ -59,6 +59,11 @@ export default function Game() {
       setShowConfetti(true);
       setShowNextButton(true);
       setPoints((prevPoints) => prevPoints + 1);
+  
+      // Desativa o confetti após 3 segundos
+      setTimeout(() => {
+        setShowConfetti(false); // Isso aciona o fade out
+      }, 3000);
     } else {
       setShowAlert(true);
     }
