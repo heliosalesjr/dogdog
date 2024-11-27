@@ -6,6 +6,8 @@ import BreedOptions from './BreedOptions';
 import ConfettiEffect from './ConfettiEffect';
 import NextButton from './NextButton';
 import Score from './Score';
+import CountdownTimer from './CountdownTimer';
+
 
 export default function Game() {
   const [imageUrl, setImageUrl] = useState('');
@@ -104,7 +106,15 @@ export default function Game() {
                 onClick={handleBreedClick}
                 disabled={!isRoundActive}
               />
-              {showNextButton && <NextButton onClick={startNewRound} />}
+              {showNextButton && (
+                <div className="flex items-center gap-4">
+                  <NextButton onClick={startNewRound} />
+                  <CountdownTimer
+                    initialTime={5} // Define 5 segundos para o countdown
+                    onComplete={startNewRound} // Inicia a próxima rodada automaticamente
+                  />
+                </div>
+              )}
               {showAlert && (
                 <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
                   <p>The name of the breed is {correctBreed}.</p>
