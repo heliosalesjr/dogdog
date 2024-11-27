@@ -20,6 +20,8 @@ export default function Game() {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [isRoundActive, setIsRoundActive] = useState(true);
   const [loading, setLoading] = useState(true); // Estado para o loading
+  const [showCountdown, setShowCountdown] = useState(false);
+
 
   useEffect(() => {
     const getWindowDimensions = () => ({
@@ -40,6 +42,7 @@ export default function Game() {
     setShowConfetti(false);
     setShowAlert(false);
     setIsRoundActive(true);
+    setShowCountdown(false);
     setLoading(true); // Ativa o loading enquanto carrega os dados
   
     try {
@@ -67,22 +70,27 @@ export default function Game() {
   }, []);
 
   const handleBreedClick = (selectedBreed) => {
-    if (!isRoundActive) return;
-
-    setIsRoundActive(false);
-
+    if (!isRoundActive) return; // Impede cliques extras
+  
+    setIsRoundActive(false); // Desativa os botões após o clique
+  
     if (selectedBreed === correctBreed) {
       setShowConfetti(true);
       setShowNextButton(true);
       setPoints((prevPoints) => prevPoints + 1);
+  
+      // Controla o tempo de exibição do confetti
       setTimeout(() => {
         setShowConfetti(false);
-      }, 3000);
+      }, 6000); // Altere o tempo aqui (3000 ms = 3 segundos)
     } else {
       setShowAlert(true);
     }
+  
+    setShowCountdown(true); // Inicia o countdown em ambas as situações
   };
-
+  
+  
   return (
     <section id="game" className="bg-orange-200 py-16">
       <div className="h-screen w-full flex flex-col justify-between items-center relative">
@@ -106,15 +114,16 @@ export default function Game() {
                 onClick={handleBreedClick}
                 disabled={!isRoundActive}
               />
-              {showNextButton && (
+              {showCountdown && (
                 <div className="flex items-center gap-4">
-                  <NextButton onClick={startNewRound} />
+                  {showNextButton && <NextButton onClick={startNewRound} />}
                   <CountdownTimer
-                    initialTime={5} // Define 5 segundos para o countdown
-                    onComplete={startNewRound} // Inicia a próxima rodada automaticamente
+                    initialTime={5}
+                    onComplete={startNewRound}
                   />
                 </div>
               )}
+              
               {showAlert && (
                 <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
                   <p>The name of the breed is {correctBreed}.</p>
