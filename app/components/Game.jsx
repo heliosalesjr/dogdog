@@ -92,7 +92,7 @@ export default function Game() {
   
   
   return (
-    <section id="game" className="bg-orange-200 py-16">
+    <section id="game" className="bg-pink-200 py-16">
       <div className="h-screen w-full flex flex-col justify-between items-center relative">
         <Score points={points} />
 
