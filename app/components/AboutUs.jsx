@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function AboutUs() {
@@ -30,7 +31,7 @@ export default function AboutUs() {
               Repository
             </a>
             <a
-              href="https://linkedin.com/in/your-profile-link"
+              href="https://www.linkedin.com/in/helio-sales/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 flex items-center gap-2 bg-black text-white text-lg font-semibold border-4 border-black rounded-lg hover:bg-gray-800 transition-transform active:translate-x-1 active:translate-y-1 shadow-black shadow-solid"
@@ -43,10 +44,12 @@ export default function AboutUs() {
 
         {/* Imagem */}
         <div className="lg:w-1/2 mt-10 lg:mt-0 lg:ml-8">
-          <img
-            src="/path-to-your-image.jpg"
+          <Image
+            src="/img/heliosal.png"
             alt="A playful dog illustration or relevant image"
             className="w-full rounded-3xl border-4 border-black shadow-black shadow-solid"
+            width={500}
+            height={500}
           />
         </div>
       </div>
