@@ -23,7 +23,7 @@ export default function HeroSection() {
           onClick={() => {
             document.getElementById("game").scrollIntoView({ behavior: "smooth" });
           }}
-          className="relative px-8 py-3 bg-sky-500 text-white font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2"
+          className="relative px-8 py-3 bg-sky-500 text-white font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-1"
         >
           Play
         </button>
@@ -34,7 +34,7 @@ export default function HeroSection() {
     onClick={() => {
       document.getElementById("about").scrollIntoView({ behavior: "smooth" });
     }}
-    className="relative px-8 py-3 bg-white text-pink-600 font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-2"
+    className="relative px-8 py-3 bg-white text-pink-600 font-bold rounded-full border-2 border-black transition-transform duration-200 hover:-translate-y-1"
   >
     Learn more
   </button>
