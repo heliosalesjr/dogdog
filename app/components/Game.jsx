@@ -94,12 +94,12 @@ export default function Game() {
   return (
     <section id="game" className="bg-pink-200 py-16">
       <div className="h-screen w-full flex flex-col justify-between items-center relative">
-        <Score points={points} />
+        <Score points={points}/>
 
         {loading ? (
           // Exibe o loader enquanto carrega
           <div className="flex flex-1 flex-col justify-center items-center">
-            <div className="spinner border-t-4 border-blue-500 border-solid rounded-full h-12 w-12 animate-spin"></div>
+            <div className="spinner border-t-4 border-pink-500 border-solid rounded-full h-12 w-12 animate-spin"></div>
             <p className="text-lg text-gray-700 mt-4">Loading...</p>
           </div>
         ) : (
