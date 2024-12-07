@@ -6,7 +6,7 @@ export default function AboutUs() {
     <section className="bg-gradient-to-br from-slate-500 to-[#ADD8E6] py-16">
       <div className="container mx-auto max-w-6xl px-6 flex flex-col lg:flex-row items-center">
         {/* Texto */}
-        <div className="lg:w-1/2 text-center lg:text-left">
+        <div className="lg:w-1/2 text-center lg:text-left px-8 md:px-0">
           <h2 className="text-4xl font-bold text-white mb-6 drop-shadow-lg">About Me</h2>
 
           <p className="text-lg text-white mb-4 leading-relaxed">
