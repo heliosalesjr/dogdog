@@ -23,7 +23,7 @@ export default function FeatureSection() {
   return (
     <section
       id="about"
-      className="flex flex-col items-center text-center bg-stone-100 py-16 px-8 font-space"
+      className="flex flex-col items-center text-center bg-stone-100 py-24 px-8 font-space"
     >
       {/* Título e Subtítulo */}
       <motion.h2
