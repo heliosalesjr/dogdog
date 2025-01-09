@@ -92,53 +92,53 @@ export default function Game() {
   
   
   return (
-    <section id="game" className="bg-pink-200 py-16">
-      <div className="h-screen w-full flex flex-col justify-between items-center relative">
-        <Score points={points}/>
+    <section id="game" className="bg-pink-200 py-16 relative h-screen w-full flex flex-col items-center justify-between">
+      <Score points={points} />
 
-        {loading ? (
-          // Exibe o loader enquanto carrega
-          <div className="flex flex-1 flex-col justify-center items-center">
-            <div className="spinner border-t-4 border-pink-500 border-solid rounded-full h-12 w-12 animate-spin"></div>
-            <p className="text-lg text-gray-700 mt-4">Loading...</p>
-          </div>
-        ) : (
-          // Exibe o conteúdo carregado
-          <div className="flex flex-1 flex-col justify-center items-center">
+      {loading ? (
+        <div className="flex-1 flex flex-col justify-center items-center">
+          <div className="spinner border-t-4 border-pink-500 border-solid rounded-full h-12 w-12 animate-spin"></div>
+          <p className="text-lg text-gray-700 mt-4">Loading...</p>
+        </div>
+      ) : (
+        <div className="relative w-full h-full flex flex-col">
+          {showConfetti && <ConfettiEffect windowSize={windowSize} className="absolute top-0" />}
+
+          <div className="flex-1 flex justify-center items-center max-h-[70%] overflow-hidden">
             <DogImage imageUrl={imageUrl} />
-            <div className="flex flex-col items-center py-8 bg-sky-800/70 m-8 rounded-3xl max-w-xl mx-auto">
-              {showConfetti && <ConfettiEffect windowSize={windowSize} />}
-              <h1 className="text-white text-4xl font-bold mb-4 text-center px-8">Can you guess the breed? 🐶</h1>
-              <BreedOptions
-                options={breedOptions}
-                onClick={handleBreedClick}
-                disabled={!isRoundActive}
-              />
-              {showCountdown && (
-                <div className="flex items-center gap-4">
-                  {showNextButton && <NextButton onClick={startNewRound} />}
-                  <CountdownTimer
-                    initialTime={5}
-                    onComplete={startNewRound}
-                  />
-                </div>
-              )}
-              
-              {showAlert && (
-                <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
-                  <p>The name of the breed is {correctBreed}.</p>
-                  <button
-                    onClick={startNewRound}
-                    className="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
-                  >
-                    Next
-                  </button>
-                </div>
-              )}
-            </div>
           </div>
-        )}
-      </div>
+
+          {/* Caixa de Diálogo (ajustada) */}
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-sky-800/70 py-6 px-8 max-w-md w-auto rounded-3xl flex flex-col items-center shadow-lg">
+            <h1 className="text-white text-4xl font-bold mb-4 text-center">
+              Can you guess the breed? 🐶
+            </h1>
+            <BreedOptions
+              options={breedOptions}
+              onClick={handleBreedClick}
+              disabled={!isRoundActive}
+            />
+            {showCountdown && (
+              <div className="flex items-center gap-4 mt-4">
+                {showNextButton && <NextButton onClick={startNewRound} />}
+                <CountdownTimer initialTime={5} onComplete={startNewRound} />
+              </div>
+            )}
+            {showAlert && (
+              <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
+                <p>The name of the breed is {correctBreed}.</p>
+                <button
+                  onClick={startNewRound}
+                  className="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
+                >
+                  Next
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
+
   );
 }
