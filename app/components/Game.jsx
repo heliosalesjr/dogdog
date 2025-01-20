@@ -111,7 +111,7 @@ export default function Game() {
           {/* Caixa de Diálogo (ajustada) */}
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-sky-800/70 py-6 px-8 max-w-md w-auto rounded-3xl flex flex-col items-center shadow-lg">
             <h1 className="text-white text-4xl font-bold mb-4 text-center">
-              Can you guess the breed? 🐶
+              Guess the breed! 🐶
             </h1>
             <BreedOptions
               options={breedOptions}
