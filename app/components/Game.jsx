@@ -7,7 +7,7 @@ import ConfettiEffect from './ConfettiEffect';
 import NextButton from './NextButton';
 import Score from './Score';
 import CountdownTimer from './CountdownTimer';
-
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Game() {
   const [imageUrl, setImageUrl] = useState('');
@@ -19,9 +19,9 @@ export default function Game() {
   const [points, setPoints] = useState(0);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [isRoundActive, setIsRoundActive] = useState(true);
-  const [loading, setLoading] = useState(true); // Estado para o loading
+  const [loading, setLoading] = useState(true);
   const [showCountdown, setShowCountdown] = useState(false);
-
+  const [showGuessBreed, setShowGuessBreed] = useState(true);
 
   useEffect(() => {
     const getWindowDimensions = () => ({
@@ -43,54 +43,52 @@ export default function Game() {
     setShowAlert(false);
     setIsRoundActive(true);
     setShowCountdown(false);
-    setLoading(true); // Ativa o loading enquanto carrega os dados
-  
+    setShowGuessBreed(true);
+    setLoading(true);
+
     try {
       const result = await fetchDogImage();
-  
+
       if (result) {
         setImageUrl(result.imageUrl);
         setCorrectBreed(result.breed);
         setBreedOptions([result.breed, ...result.randomBreeds].sort(() => Math.random() - 0.5));
-  
-        // Aguarda 1 segundo (1000 ms) antes de desativar o loading
+
         setTimeout(() => {
           setLoading(false);
-        }, 1000); // Ajuste o tempo conforme necessário
+        }, 1000);
       }
     } catch (error) {
       console.error("Erro ao buscar a imagem de cachorro:", error);
-      setLoading(false); // Garante que o loading será desativado mesmo em caso de erro
+      setLoading(false);
     }
   };
-  
 
   useEffect(() => {
     startNewRound();
   }, []);
 
   const handleBreedClick = (selectedBreed) => {
-    if (!isRoundActive) return; // Impede cliques extras
-  
-    setIsRoundActive(false); // Desativa os botões após o clique
-  
+    if (!isRoundActive) return;
+
+    setIsRoundActive(false);
+    setShowGuessBreed(false); // Esconde a div "Guess the breed!"
+
     if (selectedBreed === correctBreed) {
       setShowConfetti(true);
       setShowNextButton(true);
       setPoints((prevPoints) => prevPoints + 1);
-  
-      // Controla o tempo de exibição do confetti
+
       setTimeout(() => {
         setShowConfetti(false);
-      }, 6000); // Altere o tempo aqui (3000 ms = 3 segundos)
+      }, 6000);
     } else {
       setShowAlert(true);
     }
-  
-    setShowCountdown(true); // Inicia o countdown em ambas as situações
+
+    setShowCountdown(true);
   };
-  
-  
+
   return (
     <section id="game" className="bg-pink-200 py-16 relative h-screen w-full flex flex-col items-center justify-between">
       <Score points={points} />
@@ -108,24 +106,50 @@ export default function Game() {
             <DogImage imageUrl={imageUrl} />
           </div>
 
-          {/* Caixa de Diálogo (ajustada) */}
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-sky-800/70 py-6 px-8 max-w-md w-auto rounded-3xl flex flex-col items-center shadow-lg">
-            <h1 className="text-white text-4xl font-bold mb-4 text-center">
-              Guess the breed! 🐶
-            </h1>
-            <BreedOptions
-              options={breedOptions}
-              onClick={handleBreedClick}
-              disabled={!isRoundActive}
-            />
+            <AnimatePresence>
+              {showGuessBreed && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h1 className="text-white text-4xl font-bold mb-4 text-center">
+                    Guess the breed! 🐶
+                  </h1>
+                  <BreedOptions
+                    options={breedOptions}
+                    onClick={handleBreedClick}
+                    disabled={!isRoundActive}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {showCountdown && (
               <div className="flex items-center gap-4 mt-4">
+                {showNextButton && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p className="text-white text-2xl font-bold">Woof woof! 🎉</p>
+                  </motion.div>
+                )}
                 {showNextButton && <NextButton onClick={startNewRound} />}
                 <CountdownTimer initialTime={5} onComplete={startNewRound} />
               </div>
             )}
+
             {showAlert && (
-              <div className="mt-4 bg-red-600 text-white p-4 rounded text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="mt-4 bg-red-600 text-white p-4 rounded text-center"
+              >
                 <p>The name of the breed is {correctBreed}.</p>
                 <button
                   onClick={startNewRound}
@@ -133,12 +157,11 @@ export default function Game() {
                 >
                   Next
                 </button>
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
       )}
     </section>
-
   );
 }
