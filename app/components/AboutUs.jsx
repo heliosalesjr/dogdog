@@ -46,7 +46,7 @@ export default function AboutUs() {
         <div className="lg:w-1/2 mt-10 lg:mt-0 lg:ml-8">
           <Image
             src="/img/heliosal.png"
-            alt="A playful dog illustration or relevant image"
+            alt="Portrait of me, Helio Sales, the developer, the mind, the man behind Guess The Woof"
             className="w-full rounded-3xl border-4 border-black shadow-black shadow-solid"
             width={500}
             height={500}
