@@ -106,7 +106,8 @@ export default function Game() {
             <DogImage imageUrl={imageUrl} />
           </div>
 
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-sky-800/70 py-6 px-8 max-w-md w-auto rounded-3xl flex flex-col items-center shadow-lg">
+          {/* Div "Guess the breed!" ajustada para mobile */}
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-sky-800/70 py-6 px-4 w-[90%] max-w-md rounded-3xl flex flex-col items-center shadow-lg">
             <AnimatePresence>
               {showGuessBreed && (
                 <motion.div
@@ -114,6 +115,7 @@ export default function Game() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
+                  className="w-full"
                 >
                   <h1 className="text-white text-4xl font-bold mb-4 text-center">
                     Guess the breed! 🐶
@@ -148,9 +150,9 @@ export default function Game() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="mt-4 bg-red-600 text-white p-4 rounded text-center"
+                className="mt-4 bg-red-500 text-white p-4 rounded-2xl text-center w-full"
               >
-                <p>The name of the breed is {correctBreed}.</p>
+                <p className='font-bold'>The name of the breed is {correctBreed}.</p>
                 <button
                   onClick={startNewRound}
                   className="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
