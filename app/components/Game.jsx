@@ -21,7 +21,8 @@ export default function Game() {
   const [isRoundActive, setIsRoundActive] = useState(true);
   const [loading, setLoading] = useState(true);
   const [showCountdown, setShowCountdown] = useState(false);
-  const [showGuessBreed, setShowGuessBreed] = useState(true);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [showOptions, setShowOptions] = useState(true);
 
   useEffect(() => {
     const getWindowDimensions = () => ({
@@ -43,7 +44,8 @@ export default function Game() {
     setShowAlert(false);
     setIsRoundActive(true);
     setShowCountdown(false);
-    setShowGuessBreed(true);
+    setFeedbackMessage('');
+    setShowOptions(true);
     setLoading(true);
 
     try {
@@ -72,18 +74,20 @@ export default function Game() {
     if (!isRoundActive) return;
 
     setIsRoundActive(false);
-    setShowGuessBreed(false); // Esconde a div "Guess the breed!"
+    setShowOptions(false);
 
     if (selectedBreed === correctBreed) {
       setShowConfetti(true);
       setShowNextButton(true);
       setPoints((prevPoints) => prevPoints + 1);
+      setFeedbackMessage("Woof woof! 🎉 You got it right!");
 
       setTimeout(() => {
         setShowConfetti(false);
       }, 6000);
     } else {
       setShowAlert(true);
+      setFeedbackMessage(`Oops! The correct breed is ${correctBreed}.`);
     }
 
     setShowCountdown(true);
@@ -99,69 +103,47 @@ export default function Game() {
           <p className="text-lg text-gray-700 mt-4">Loading...</p>
         </div>
       ) : (
-        <div className="relative w-full h-full flex flex-col">
+        <div className="relative w-full h-full flex flex-col items-center">
           {showConfetti && <ConfettiEffect windowSize={windowSize} className="absolute top-0" />}
 
           <div className="flex-1 flex justify-center items-center max-h-[70%] overflow-hidden">
             <DogImage imageUrl={imageUrl} />
           </div>
 
-          {/* Div "Guess the breed!" ajustada para mobile */}
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-sky-800/70 py-6 px-4 w-[90%] max-w-md rounded-3xl flex flex-col items-center shadow-lg">
-            <AnimatePresence>
-              {showGuessBreed && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full"
-                >
-                  <h1 className="text-white text-4xl font-bold mb-4 text-center">
-                    Guess the breed! 🐶
-                  </h1>
-                  <BreedOptions
-                    options={breedOptions}
-                    onClick={handleBreedClick}
-                    disabled={!isRoundActive}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {showCountdown && (
-              <div className="flex items-center gap-4 mt-4">
-                {showNextButton && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <p className="text-white text-2xl font-bold">Woof woof! 🎉</p>
-                  </motion.div>
-                )}
-                {showNextButton && <NextButton onClick={startNewRound} />}
-                <CountdownTimer initialTime={5} onComplete={startNewRound} />
-              </div>
-            )}
-
-            {showAlert && (
+          <AnimatePresence>
+            {feedbackMessage && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="mt-4 bg-red-500 text-white p-4 rounded-2xl text-center w-full"
+                className="mt-4 bg-sky-800/70 py-4 px-6 rounded-3xl text-white text-xl font-bold text-center shadow-lg"
               >
-                <p className='font-bold'>The name of the breed is {correctBreed}.</p>
-                <button
-                  onClick={startNewRound}
-                  className="mt-2 px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600"
-                >
-                  Next
-                </button>
+                {feedbackMessage}
               </motion.div>
             )}
-          </div>
+          </AnimatePresence>
+
+          {showOptions && (
+            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-sky-800/70 py-6 px-4 w-[90%] max-w-md rounded-3xl flex flex-col items-center shadow-lg">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-white text-4xl font-bold mb-4 text-center"
+              >
+                Guess the breed! 🐶
+              </motion.h1>
+              <BreedOptions options={breedOptions} onClick={handleBreedClick} disabled={!isRoundActive} />
+            </div>
+          )}
+
+          {showCountdown && (
+            <div className="flex items-center gap-4 mt-4">
+              {showNextButton && <NextButton onClick={startNewRound} />}
+              <CountdownTimer initialTime={5} onComplete={startNewRound} />
+            </div>
+          )}
         </div>
       )}
     </section>
