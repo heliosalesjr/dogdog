@@ -5,6 +5,23 @@ import { FaPaw, FaBars, FaTimes } from 'react-icons/fa';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleLogoClick = () => {
+    // Se existe uma seção com id "home", vai para ela
+    const homeElement = document.getElementById('home');
+    if (homeElement) {
+      homeElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      // Se não existe seção "home", vai para o topo da página
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -25,7 +42,7 @@ export default function Navbar() {
 
   const navItems = [
     { text: 'Home', id: 'home' },
-    { text: 'Play', id: 'play' },
+    { text: 'Play', id: 'game' },
     { text: 'About', id: 'about' },
     { text: 'Contact', id: 'contact' }
   ];
@@ -34,7 +51,10 @@ export default function Navbar() {
     <nav className="bg-slate-800 p-4 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-pink-300 flex items-center">
+        <h1 
+          className="text-2xl font-bold text-pink-300 flex items-center cursor-pointer hover:opacity-80 transition-opacity duration-200"
+          onClick={handleLogoClick}
+        >
           <FaPaw className="mr-2 text-orange-200" /> 
           Guess<span className="text-white font-medium">The</span>Woof
         </h1>

@@ -25,12 +25,14 @@ export default function HeroSection() {
 
   return (
     <motion.section
+      id="home"
       initial="hidden"
       animate="visible"
       className="flex flex-col items-center justify-center text-center bg-stone-200 h-screen p-8 font-space"
     >
       {/* Texto principal */}
       <motion.h1
+        
         variants={textVariant}
         className="text-5xl md:text-7xl font-black text-slate-800 drop-shadow-lg"
       >

@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function AboutUs() {
   return (
-    <section className="bg-gradient-to-br from-slate-500 to-[#ADD8E6] py-16">
+    <section className="bg-gradient-to-br from-slate-500 to-[#ADD8E6] py-16" id='contact'>
       <div className="container mx-auto max-w-6xl px-6 flex flex-col lg:flex-row items-center">
         {/* Texto */}
         <div className="lg:w-1/2 text-center lg:text-left px-8 md:px-0">
