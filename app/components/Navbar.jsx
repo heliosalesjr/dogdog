@@ -72,7 +72,7 @@ export default function Navbar() {
             <li key={item.id}>
               <button
                 onClick={() => handleNavClick(item.id)}
-                className="block w-full text-left text-white hover:text-orange-200 hover:bg-slate-700 px-4 py-2 rounded transition-colors duration-200 cursor-pointer font-medium"
+                className="block w-full text-center text-white hover:text-orange-200 hover:bg-slate-700 px-4 py-2 rounded transition-colors duration-200 cursor-pointer font-medium"
               >
                 {item.text}
               </button>
