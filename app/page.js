@@ -10,7 +10,6 @@ export default function HomePage() {
       
       <HeroSection />
       <Game /> 
-      
       <AboutTheProject />
       <AboutUs />
       <Footer />
